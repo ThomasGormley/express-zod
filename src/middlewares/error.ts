@@ -9,6 +9,9 @@ export const errorConverter = (
   next: NextFunction
 ) => {
   if (!(err instanceof ApiError)) {
+    // determine status code depending on instanceof Error thrown above in the stack
+    // e.g. if ORM had some form of validation error that our schema for whatever
+    // reason wouldn't catch, set 422
     const statusCode = 500;
     const message = err.message || "Something went wrong";
     next(new ApiError(statusCode, message, err.stack));

@@ -1,8 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { NotFoundError } from "../../../error";
-import { TypedRequestBody } from "../../../middlewares/validateRequest";
-import { Note, notesSchema } from "./notes.schema";
-
+import {
+  TypedRequestBody,
+  TypedRequestParams,
+} from "../../../middlewares/validateRequest";
+import { Note, NoteIdOnly, notesSchema } from "./notes.schema";
+import * as notesService from "./notes.service";
 export const findAll = (
   req: Request,
   res: Response<Note>,
@@ -17,9 +20,13 @@ export const findAll = (
   });
 };
 
-export function findOne(req: Request, res: Response<any>, next: NextFunction) {
+export function findOne(
+  req: TypedRequestParams<NoteIdOnly>,
+  res: Response<any>,
+  next: NextFunction
+) {
   // search db for record
-  const note = dbFind();
+  const note = notesService.findUser(req.params.id);
 
   if (!note) {
     throw new NotFoundError("note not found");
@@ -44,8 +51,4 @@ export function create(
     status: "archived",
     title: "title",
   });
-}
-
-function dbFind() {
-  return null;
 }

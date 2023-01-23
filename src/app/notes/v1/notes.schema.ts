@@ -9,3 +9,7 @@ export const notesSchema = z.object({
 });
 
 export type Note = z.infer<typeof notesSchema>;
+
+const notesIdObject = notesSchema.pick({ id: true });
+
+export type NoteIdOnly = typeof notesIdObject;

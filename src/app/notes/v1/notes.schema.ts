@@ -7,3 +7,5 @@ export const notesSchema = z.object({
   hidden: z.boolean().default(false),
   status: z.enum(["published", "archived"]),
 });
+
+export type Note = z.infer<typeof notesSchema>;

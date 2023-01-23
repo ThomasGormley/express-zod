@@ -4,7 +4,7 @@ import {
   TypedRequestBody,
   TypedRequestParams,
 } from "../../../middlewares/validateRequest";
-import { Note, NoteIdOnly, notesSchema } from "./notes.schema";
+import { Note, notesIdOnlySchema, notesSchema } from "./notes.schema";
 import * as notesService from "./notes.service";
 
 export const findAll = (
@@ -22,7 +22,7 @@ export const findAll = (
 };
 
 export function findOne(
-  req: TypedRequestParams<NoteIdOnly>,
+  req: TypedRequestParams<typeof notesIdOnlySchema>,
   res: Response<any>,
   next: NextFunction
 ) {

@@ -26,8 +26,11 @@ export function create(
   res: Response<Note>,
   next: NextFunction
 ) {
-  // typesafe inferred as boolean
+  // Runtime & compile time typesafe request body from the schema using requestValidator
+  //    boolean
   const isHidden = req.body.hidden;
+  //    published | archived
+  const status = req.body.status;
   return res.json({
     id: "1a657d0c-b676-4bbf-9d18-d9ecb8547d8d",
     description: "description",

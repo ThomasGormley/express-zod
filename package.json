@@ -1,5 +1,5 @@
 {
-  "name": "express-zod-prisma",
+  "name": "express-zod",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",

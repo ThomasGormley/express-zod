@@ -6,6 +6,7 @@ import {
 } from "../../../middlewares/validateRequest";
 import { Note, NoteIdOnly, notesSchema } from "./notes.schema";
 import * as notesService from "./notes.service";
+
 export const findAll = (
   req: Request,
   res: Response<Note>,
@@ -26,7 +27,7 @@ export function findOne(
   next: NextFunction
 ) {
   // search db for record
-  const note = notesService.findUser(req.params.id);
+  const note = notesService.findNote(req.params.id);
 
   if (!note) {
     throw new NotFoundError("note not found");

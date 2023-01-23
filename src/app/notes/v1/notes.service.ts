@@ -1,3 +1,3 @@
-export const findUser = (id: string) => {
+export const findNote = (id: string) => {
   return null;
 };

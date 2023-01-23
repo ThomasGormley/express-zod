@@ -1,6 +1,6 @@
 import express from "express";
 import { notesRouter } from "./app/notes/v1/notes.routes";
-import { errorHandler } from "./middlewares";
+import { errorHandler } from "./middlewares/errorHandler";
 
 export const app = express();
 

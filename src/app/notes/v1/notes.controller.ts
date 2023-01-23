@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { NotFoundError } from "../../../error";
 import { TypedRequestBody } from "../../../middlewares/validateRequest";
 import { Note, notesSchema } from "./notes.schema";
 
@@ -17,7 +18,12 @@ export const findAll = (
 };
 
 export function findOne(req: Request, res: Response<any>, next: NextFunction) {
-  throw new Error("test error");
+  // search db for record
+  const note = dbFind();
+
+  if (!note) {
+    throw new NotFoundError("note not found");
+  }
   return res.json({ status: "ok" });
 }
 
@@ -38,4 +44,8 @@ export function create(
     status: "archived",
     title: "title",
   });
+}
+
+function dbFind() {
+  return null;
 }
